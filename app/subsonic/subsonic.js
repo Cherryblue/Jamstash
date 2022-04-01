@@ -88,7 +88,8 @@ angular.module('jamstash.subsonic.controller', [
         playSong               : playSong,
         selectAll              : selectAll,
         selectNone             : SelectedSongs.reset,
-        toggleSelection        : SelectedSongs.toggle
+        toggleSelection        : SelectedSongs.toggle,
+		sortAlbums				: sortAlbums
     });
 
     function selectAll() {
@@ -108,6 +109,7 @@ angular.module('jamstash.subsonic.controller', [
         player.emptyQueue()
             .addSongs($scope.song)
             .playFirstSong();
+		SelectedSongs.reset();
     }
 
     function playFrom(index) {
@@ -126,13 +128,65 @@ angular.module('jamstash.subsonic.controller', [
             .addSong(song)
             .playFirstSong();
     }
+	
+	function unselectChildren(obj){
+		for(let child of obj.children){
+			child.classList.remove('active');
+		}
+	}
+	
+	/// TODO : Transform into a directive
+	function sortAlbums(prefix, newValue, keyId) {
+		const domNewEl = $('#'+prefix+newValue)[0];
+		let domOldEl = null;
+		for(let child of domNewEl.parentNode.children)
+			if(child.classList.contains('active')){
+				domOldEl = child;
+				break;
+			}
+			
+        if (domNewEl !== domOldEl) {
+            if ($scope.song.length > 0) {
+                sortSubsonicSongs(keyId);
+            } else if ($scope.album.length > 0) {
+                sortSubsonicAlbums(keyId);
+                var indexes = $.map(globals.AlbumSorts, function (obj, index) {
+                    if (obj.id === keyId) {
+                        return index;
+                    }
+                });
+                globals.settings.DefaultAlbumSort = globals.AlbumSorts[indexes];
+				domNewEl.classList.add('active');
+				domOldEl.classList.remove('active');
+            }
+        }
+    }
+	
+	$scope.$watch('SelectedAlbumSort.id', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+            if ($scope.song.length > 0) {
+                sortSubsonicSongs(newValue);
+            } else if ($scope.album.length > 0) {
+                sortSubsonicAlbums(newValue);
+                var indexes = $.map(globals.AlbumSorts, function (obj, index) {
+                    if (obj.id === newValue) {
+                        return index;
+                    }
+                });
+                globals.settings.DefaultAlbumSort = globals.AlbumSorts[indexes];
+            }
+        }
+    });
 
     $rootScope.showIndex = false;
-    $scope.toggleIndex = function () {
+    $scope.toggleIndex = function (obj) {
         $rootScope.showIndex = true;
         $scope.showPlaylist = false;
         $scope.showPodcast = false;
         $scope.saveDefaultSection('index');
+		let btn = $('#indexTabBtn')[0];
+		unselectChildren(btn?.parentElement);
+		btn?.classList.add('active');
     };
     $scope.showPlaylist = false;
     $scope.togglePlaylist = function () {
@@ -140,6 +194,9 @@ angular.module('jamstash.subsonic.controller', [
         $scope.showPlaylist = true;
         $scope.showPodcast = false;
         $scope.saveDefaultSection('playlist');
+		let btn = $('#playlistTabBtn')[0];
+		unselectChildren(btn.parentElement);
+		btn.classList.add('active');
     };
     $scope.showPodcast = false;
     $scope.togglePodcast = function () {
@@ -147,6 +204,9 @@ angular.module('jamstash.subsonic.controller', [
         $scope.showPlaylist = false;
         $scope.showPodcast = true;
         $scope.saveDefaultSection('podcast');
+		let btn = $('#podcastTabBtn')[0];
+		unselectChildren(btn.parentElement);
+		btn.classList.add('active');
     };
     $scope.saveDefaultSection = function (val) {
         utils.setValue('DefaultSection', val, false);
@@ -164,8 +224,12 @@ angular.module('jamstash.subsonic.controller', [
                 $scope.showPodcast = true;
                 break;
             default:
-                break;
+				return;
         }
+		
+		let btn = $('#'+section+'TabBtn')[0];
+		unselectChildren(btn.parentElement);
+		btn.classList.add('active');
     };
     var sortSubsonicAlbums = function (newValue) {
         if (typeof newValue != 'undefined') {
@@ -202,21 +266,6 @@ angular.module('jamstash.subsonic.controller', [
             }
         }
     };
-    $scope.$watch('SelectedAlbumSort.id', function (newValue, oldValue) {
-        if (newValue !== oldValue) {
-            if ($scope.song.length > 0) {
-                sortSubsonicSongs(newValue);
-            } else if ($scope.album.length > 0) {
-                sortSubsonicAlbums(newValue);
-                var indexes = $.map(globals.AlbumSorts, function (obj, index) {
-                    if (obj.id === newValue) {
-                        return index;
-                    }
-                });
-                globals.settings.DefaultAlbumSort = globals.AlbumSorts[indexes];
-            }
-        }
-    });
 
     $scope.$watch('SelectedMusicFolder', function (newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -326,6 +375,7 @@ angular.module('jamstash.subsonic.controller', [
             } else if (action === 'display') {
                 $scope.album = [];
                 $scope.song = songs;
+				$scope.navigateRight();
             }
         }, function (error) {
             if (error.serviceError === true) {
@@ -376,6 +426,7 @@ angular.module('jamstash.subsonic.controller', [
                 if ($scope.SelectedAlbumSort.id !== 'default') {
                     sortSubsonicAlbums($scope.SelectedAlbumSort.id);
                 }
+				$scope.navigateRight();
             }, function (error) {
                 notifications.updateMessage(error.reason, true);
             });
@@ -399,6 +450,7 @@ angular.module('jamstash.subsonic.controller', [
             if ($scope.SelectedAlbumSort.id !== 'default') {
                 sortSubsonicAlbums($scope.SelectedAlbumSort.id);
             }
+			$scope.navigateRight();
         }, function (error) {
             $scope.album = [];
             notifications.updateMessage(error.reason, true);
@@ -670,6 +722,10 @@ angular.module('jamstash.subsonic.controller', [
         var promise = subsonic.getMusicFolders();
         $scope.handleErrors(promise).then(function (musicFolders) {
             var folders = musicFolders;
+			if(folders.length < 2)
+				$('#MusicFolders')?.hide();
+			else
+				$('#MusicFolders')?.show();
             $scope.MusicFolders = folders;
             var savedFolder = persistence.getSelectedMusicFolder();
             if (savedFolder) {
@@ -679,6 +735,16 @@ angular.module('jamstash.subsonic.controller', [
             }
         });
     };
+	
+	$scope.navigateRight = function(){
+		var browsingSection = document.getElementById('browsingSection');
+		browsingSection.children[1].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+	};
+	
+	$scope.navigateLeft = function(){
+		var browsingSection = document.getElementById('browsingSection');
+		browsingSection.children[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+	};
 
     // TODO: Hyz: Replace with ui-sortable
     /**

@@ -1,4 +1,24 @@
 [
+	{
+		"date": "02/04/2022", "version": "5.0.1",
+		"changes": [
+		{ "text": "- Floating layout has been replaced with HTML5 flexbox layout" },
+		{ "text": "- Design and themes have been entirely reworked (example: css variables for colors, no more borders)" },
+		{ "text": "- Fix Songs and albums in same folder render correctly and separately" },
+		{ "text": "- Fix HTML5 Notification doesn't show 'nbsp;' if artist or album is empty" },
+		{ "text": "- Fix player control icons layout" },
+		{ "text": "- Optimized Music Folder list selector doesn't show if only one folder exists" },
+		{ "text": "- Optimized Sorting list replaced by individual buttons for faster access" },
+		{ "text": "- Optimized Ellipsis on player current song title" },
+		{ "text": "- Optimized Reload & Rescan buttons have been moved to library panel" },
+		{ "text": "- Optimized No more empty space (not click-able) in-between albums when in grid-view" },
+		{ "text": "- Optimized Instead of ul/li/div, song lists now are a table/tr/td, better for layout" },
+		{ "text": "- Optimized Removed browser specific properties for html5 css which are now universal" },
+		{ "text": "- Optimized Sub menu are no longer scrollable" },
+		{ "text": "- Optimized Player Progress bar hovering enlargement now done over css instead of js" },
+		{ "text": "- Optimized Playing all songs now unselect them if they were selected before" }
+		]
+	},
     {
         "date": "18/10/2020", "version": "4.7.1",
         "changes": [

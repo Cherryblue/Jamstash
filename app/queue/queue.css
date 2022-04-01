@@ -1,14 +1,69 @@
-.queue .icon {
-    height: 12px;
-    width:  12px;
+/**
+ * Queue
+ **/
+#SideBar{
+    width: 312px;
+    min-width: 312px;
+	background: var(--bg-intermediate-color);
+}
+#SideBar div.header
+{
+    font-size: 12px;
+    color: var(--title-alt-color);
+    font-variant: small-caps;
+    font-weight: bold;
+	width: 45px;
+	padding: 3px 10px 5px 0;
 }
 
-.queue .icon-wrap {
-    float:  left;
-    cursor:  pointer;
-    padding:  6px;
+#SideQueue{
+	padding-top: 5px;
 }
 
-.queue .icon-select-all {
-    fill: #4C4C4C;
+#SideQueue article {
+	padding: 4px;
+	font-size: 12px;
+	text-align: left;
+	overflow: hidden;
+	border: none;
 }
+
+#SideQueue article:hover, #SideQueue article:nth-child(even):hover{
+	background-color: var(--selection);
+}
+
+#SideQueue article .time{
+	padding: 0 10px;
+}
+#SideQueue article .title{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#SideQueue article .icon-btn{
+	width: 15px;
+	height: 15px;
+	padding: 3px;
+	font-size: 12px;
+	color: var(--title-alt-color);
+}
+
+#SideQueue article .icon-btn:before{
+	display: block;
+	margin: 1px 0 0 1px;
+}
+
+#SideQueue article .actions .icon.jam-Play-Circle{
+	font-size: 18px;
+	padding: 1px 2px 0 2px;
+	cursor: default;
+}
+#SideQueue article:not(.playing) .jam-Play-Circle{
+	display: none;
+}
+
+#SideQueue article .checker{
+	font-size: 14px;
+}
+

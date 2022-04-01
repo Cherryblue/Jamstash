@@ -1,20 +1,5 @@
-<a href="javascript:void(0)" class="icon-wrap" ng-click="cycleRepeat()">
-    <span title="Repeat the playing queue" ng-show="selectedValue === 'queue'">
-        <svg class="icon">
-            <title>Repeat the playing queue</title>
-            <use xlink:href="images/sprite/iconic.svg#loop" class="icon-loop-queue"></use>
-        </svg>
-    </span>
-    <span title="Repeat the current song" ng-show="selectedValue === 'song'">
-        <svg class="icon">
-            <title>Repeat the current song</title>
-            <use xlink:href="images/sprite/jamstash-sprite.svg#loop-single" class="icon-loop-single"></use>
-        </svg>
-    </span>
-    <span title="Disable repeat" ng-show="selectedValue === 'none'">
-        <svg class="icon">
-            <title>Disable repeat</title>
-            <use xlink:href="images/sprite/iconic.svg#loop" class="icon-loop-none"></use>
-        </svg>
-    </span>
+<a href="javascript:void(0)" class="icon-btn loop" ng-click="cycleRepeat()">
+    <span title="Repeat the playing queue" class="all icon jam-Loop" ng-show="selectedValue === 'queue'"></span>
+    <span title="Repeat the current song" class="one icon jam-Loop-one" ng-show="selectedValue === 'song'"></span>
+    <span title="Repeat disabled" class="none icon jam-No-Loop" ng-show="selectedValue === 'none'"></span>
 </a>

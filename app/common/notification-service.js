@@ -34,8 +34,12 @@ angular.module('jamstash.notifications', ['jamstash.player.service', 'jamstash.u
 
     this.showNotification = function (song) {
         if (this.hasPermission()) {
+			let artistName = song.artist?.replace('&nbsp;','');
+			let albumName = song.album?.replace('&nbsp;','');
+			if(artistName != null && artistName != '' && albumName != null && albumName != '')
+				artistName += ' - ';
             var notification = new Notify(utils.toHTML.un(song.name), {
-                body: utils.toHTML.un(song.artist + " - " + song.album),
+                body: utils.toHTML.un(artistName + albumName),
                 icon: song.coverartthumb,
                 notifyClick: function () {
                     player.nextTrack();

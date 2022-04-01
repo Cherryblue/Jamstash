@@ -129,6 +129,7 @@ angular.module('jamstash.archive.controller', ['jamstash.archive.service', 'jams
             $scope.album = data.album;
             $scope.selectedArtist = data.selectedArtist;
             $scope.BreadCrumbs = data.breadcrumb;
+			$scope.navigateRight();
         });
     };
     $scope.getSongs = function (id, action) {
@@ -194,6 +195,16 @@ angular.module('jamstash.archive.controller', ['jamstash.archive.service', 'jams
             .addSong(song)
             .playFirstSong();
     };
+	
+	$scope.navigateRight = function(){
+		var browsingSection = document.getElementById('browsingSection');
+		browsingSection.children[1].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+	};
+	
+	$scope.navigateLeft = function(){
+		var browsingSection = document.getElementById('browsingSection');
+		browsingSection.children[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+	};
 
     // Hyz: Replace
     $scope.removeSong = function (item) {

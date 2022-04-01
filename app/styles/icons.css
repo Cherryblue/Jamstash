@@ -1,0 +1,205 @@
+/*--------------------------------
+
+Jamstash-icons Web Font
+Generated using nucleoapp.com
+
+-------------------------------- */
+@font-face {
+  font-family: 'Jamstash-icons';
+  src: url('../fonts/Jamstash-icons.eot');
+  src: url('../fonts/Jamstash-icons.eot') format('embedded-opentype'), url('../fonts/Jamstash-icons.woff2') format('woff2'), url('../fonts/Jamstash-icons.woff') format('woff'), url('../fonts/Jamstash-icons.ttf') format('truetype'), url('../fonts/Jamstash-icons.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*------------------------
+	base class definition
+-------------------------*/
+.icon {
+  display: inline-block;
+  font: normal normal normal 1em/1 'Jamstash-icons';
+  color: inherit;
+  flex-shrink: 0;
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*------------------------
+  change icon size
+-------------------------*/
+/* relative units */
+.icon-sm {
+  font-size: 0.8em;
+}
+.icon-lg {
+  font-size: 1.2em;
+}
+/* absolute units */
+.icon-16 {
+  font-size: 16px;
+}
+.icon-32 {
+  font-size: 32px;
+}
+
+/*------------------------
+  spinning icons
+-------------------------*/
+.icon-is-spinning {
+  animation: icon-spin 1s infinite linear;
+}
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*------------------------
+  rotated/flipped icons
+-------------------------*/
+.icon-rotate-90 {
+  transform: rotate(90deg);
+}
+.icon-rotate-180 {
+  transform: rotate(180deg);
+}
+.icon-rotate-270 {
+  transform: rotate(270deg);
+}
+.icon-flip-y {
+  transform: scaleY(-1);
+}
+.icon-flip-x {
+  transform: scaleX(-1);
+}
+/*------------------------
+	icons
+-------------------------*/
+
+.jam-Add::before {
+  content: "\ea01";
+}
+
+.jam-Archive::before {
+  content: "\ea02";
+}
+
+.jam-Check::before {
+  content: "\ea03";
+}
+
+.jam-Cloud::before {
+  content: "\ea04";
+}
+
+.jam-Cross::before {
+  content: "\ea05";
+}
+
+.jam-Download::before {
+  content: "\ea06";
+}
+
+.jam-Forward::before {
+  content: "\ea07";
+}
+
+.jam-Headset::before {
+  content: "\ea08";
+}
+
+.jam-Info::before {
+  content: "\ea09";
+}
+
+.jam-Left::before {
+  content: "\ea0a";
+}
+
+.jam-Loading::before {
+  content: "\ea0b";
+}
+
+.jam-Loop-one::before {
+  content: "\ea0c";
+}
+
+.jam-Loop::before {
+  content: "\ea0d";
+}
+
+.jam-Next::before {
+  content: "\ea0e";
+}
+
+.jam-No-Loop::before {
+  content: "\ea0f";
+}
+
+.jam-Pause-Circle::before {
+  content: "\ea10";
+}
+
+.jam-Play-Circle::before {
+  content: "\ea11";
+}
+
+.jam-Play::before {
+  content: "\ea12";
+}
+
+.jam-Previous::before {
+  content: "\ea13";
+}
+
+.jam-Refresh::before {
+  content: "\ea14";
+}
+
+.jam-Reload::before {
+  content: "\ea15";
+}
+
+.jam-Remove::before {
+  content: "\ea16";
+}
+
+.jam-Right::before {
+  content: "\ea17";
+}
+
+.jam-Save::before {
+  content: "\ea18";
+}
+
+.jam-Search::before {
+  content: "\ea19";
+}
+
+.jam-Settings::before {
+  content: "\ea1a";
+}
+
+.jam-Shuffle::before {
+  content: "\ea1b";
+}
+
+.jam-Speaker-Muted::before {
+  content: "\ea1c";
+}
+
+.jam-Speaker::before {
+  content: "\ea1d";
+}
+
+.jam-Star::before {
+  content: "\ea1e";
+}
+
+.jam-Trash::before {
+  content: "\ea1f";
+}
+

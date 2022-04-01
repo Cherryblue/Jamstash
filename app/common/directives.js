@@ -12,6 +12,18 @@ angular.module('JamStash')
         }
     };
 })
+.directive('sortable2', function () {
+	// This one is used for tables sorting, since tables have a intermediate DOM child "tbody" which prevents previous directive "sortable" to work. Previous one is kept in case it is used somewhere else.
+    return {
+        link: function (scope, elm, attrs) {
+			elm.children().first().sortable({
+                start: scope.dragStart,
+                update: scope.dragEnd
+            });
+            elm.children().first().disableSelection();
+        }
+    };
+})
 .directive('fancybox', ['$compile', function($compile){
     return {
         restrict: 'A',

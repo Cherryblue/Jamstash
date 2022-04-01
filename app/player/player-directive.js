@@ -51,8 +51,8 @@ angular.module('jamstash.player.directive', ['jamstash.player.service', 'jamstas
                     cssSelector: {
                         play: '.PlayTrack',
                         pause: '.PauseTrack',
-                        seekBar: '#audiocontainer .scrubber',
-                        playBar: '#audiocontainer .progress',
+                        seekBar: '#audio_wrapper0 .scrubber',
+                        playBar: '#audio_wrapper0 .progress',
                         mute: '#action_Mute',
                         unmute: '#action_UnMute',
                         volumeMax: '#action_VolumeMax',
@@ -171,7 +171,7 @@ angular.module('jamstash.player.directive', ['jamstash.player.service', 'jamstas
             });
 
             scope.revealControls = function () {
-                $('#playermiddle').css('visibility', 'visible');
+                $('#audio_wrapper0').css('visibility', 'visible');
                 $('#songdetails').css('visibility', 'visible');
             };
 
@@ -204,14 +204,6 @@ angular.module('jamstash.player.directive', ['jamstash.player.service', 'jamstas
 
             updatePlayer();
             scope.startSavePosition();
-
-            //TODO: Hyz: Maybe move to another directive dedicated to the scrubber ?
-            $('#audiocontainer .scrubber').mouseover(function () {
-                $('.audiojs .scrubber').stop().animate({ height: '8px' });
-            });
-            $('#audiocontainer .scrubber').mouseout(function () {
-                $('.audiojs .scrubber').stop().animate({ height: '4px' });
-            });
 
         } //end link
     };

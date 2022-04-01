@@ -1,0 +1,13 @@
+<div id="messages">
+	<span ng-attr-id="{{ 'msg_' + $index }}" class="message" ng-repeat="item in Messages track by $index" ng-bind-html="item"></span>
+</div>
+<div id="loading" class="icon jam-Loading" ng-show="loading.isLoading"></div>
+<a id="jslogo" title="Jamstash" class="showQueue" href=""></a>
+<a id="sslogo" target="_blank" ng-show="settings.Server" ng-href="{{settings.Server}}" title="{{settings.Server}}"></a>
+<div id="nav">
+	<ul class="tabs flexibleRow">
+		<li><a href="#/library" class="first icon icon-tab jam-Headset" id="action_Library" title="Library" ng-class="{'active': isActive('/library')}"></a></li>
+		<li><a href="#/archive" id="action_Archive" class="icon icon-tab jam-Archive" title="Archive.org - Live Music Archive" ng-class="{'active': isActive('/archive')}"></a></li>
+		<li><a href="#/settings" id="action_Settings" class="icon icon-tab jam-Settings" title="Settings" ng-class="{'active': isActive('/settings')}"></a></li>
+	</ul>
+</div>

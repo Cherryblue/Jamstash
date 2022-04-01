@@ -1,13 +1,6 @@
-.icon {
-    height: 12px;
-    width: 12px;
-    margin: 3px auto;
-}
-
 .list-item-remove {
     height: 18px;
     width: 20px;
-    float: right;
 }
 
 .list-item-remove:hover {

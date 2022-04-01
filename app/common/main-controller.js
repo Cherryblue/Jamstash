@@ -107,7 +107,7 @@ angular.module('JamStash')
     });
 
     $rootScope.showQueue = function () {
-        $('#SideBar').css('display', 'block');
+        $('#SideBar').css('display', 'flex');
         $('#right-component').removeClass('lgcolumn_expanded');
     };
     $rootScope.hideQueue = function () {
@@ -122,15 +122,13 @@ angular.module('JamStash')
         }
     };
     $rootScope.showArtists = function () {
-        $('#left-component').css('display', '');
-        $('#right-component').removeClass('lgcolumn_expandedleft');
+        $('#leftSide #globalNav+.smcolumn')[0].classList.remove('hidden');
     };
     $rootScope.hideArtists = function () {
-        $('#left-component').css('display', 'none');
-        $('#right-component').addClass('lgcolumn_expandedleft');
+        $('#leftSide #globalNav+.smcolumn')[0].classList.add('hidden');
     };
     $scope.toggleArtists = function () {
-        if ($('#left-component').css('display') == 'none') {
+        if ($('#leftSide #globalNav+.smcolumn').css('display') == 'none') {
             $rootScope.showArtists();
         } else {
             $rootScope.hideArtists();

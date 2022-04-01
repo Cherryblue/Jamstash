@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="bower_components/fancybox/source/jquery.fancybox.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <link href="styles/Style.css" rel="stylesheet" type="text/css" data-name="main" />
-    <link href="styles/Mobile.css" rel="stylesheet" type="text/css" data-name="main" />
-    <link href="" rel="stylesheet" type="text/css" data-name="theme" />
     <!-- build:css(app) styles/concat.min.css -->
     <link rel="stylesheet" href="player/player.css" />
     <link rel="stylesheet" href="queue/queue.css" />
@@ -25,52 +22,18 @@
     <link rel="stylesheet" href="player/repeat-directive/repeat-directive.css" />
     <link rel="stylesheet" href="subsonic/breadcrumbs-directive/breadcrumbs-directive.css" />
     <!-- endbuild -->
+    <link href="styles/Style.css" rel="stylesheet" type="text/css" data-name="main" />
+	<link href="styles/Adaptive.css" rel="stylesheet" type="text/css" data-name="adaptive" />
+    <link href="" rel="stylesheet" type="text/css" data-name="theme" />
+	<link rel="stylesheet" href="styles/icons.css" type="text/css" data-name="icons" />
 </head>
-<body>
-    <div id="container">
-        <div id="header">
-            <div id="messages">
-                <span ng-attr-id="{{ 'msg_' + $index }}" class="message" ng-repeat="item in Messages track by $index" ng-bind-html="item"></span>
-            </div>
-            <div id="loading" ng-show="loading.isLoading"></div>
-            <a id="jslogo" title="Jamstash" class="showQueue" href=""></a>
-            <a id="sslogo" target="_blank" ng-show="settings.Server" ng-href="{{settings.Server}}" title="{{settings.Server}}"></a>
-            <div id="globalactions">
-                <a href="" class="button" ng-click="toggleQueue()" title="Pin Queue"><img src="images/arrow_right_gl_8x8.png" /></a>
-            </div>
-            <div id="nav">
-                <ul class="tabs">
-                    <li><a href="#/library" class="first" id="action_Library" title="Library" ng-class="{'active': isActive('/library')}"><img src="images/headphones_gd_16x14.png" /></a></li>
-                    <li><a href="#/archive" id="action_Archive" class="" title="Archive.org - Live Music Archive" ng-class="{'active': isActive('/archive')}"><img src="images/archive_gd_16x16.png" /></a></li>
-                    <li><a href="#/settings" id="action_Settings" class="last" title="Settings" ng-class="{'active': isActive('/settings')}"><img src="images/cog_16x16.png" /></a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="content">
-            <!-- Main -->
-            <div ng-view></div>
-            <!-- Audio Player -->
-            <div class="clear"></div>
-
-            <div class="clear"></div>
-        </div><!-- end #content -->
-        <div id="SideBar" ng-include src="'queue/queue.html'" ng-controller="QueueController as vm">
-            <!--
-            <div id="NowPlaying">
-                <div class="header"><img src="images/rss_12x12.png" /> Now Playing</div>
-                <div id="NowPlayingList"><span class="user">Loading...</span></div>
-            </div>
-            <div id="Chat">
-                <div class="header"><img src="images/chat_alt_stroke_12x12.png" /> Chat</div>
-                <div id="ChatMsgs"></div>
-            </div>
-            <div class="submit"><img src="images/comment_stroke_gl_12x11.png" /><input type="text" id="ChatMsg" class="chat" title="Hit [Enter] to Post" /></div>
-            -->
-        </div>
-        <!-- Player -->
-        <div ng-include src="'player/player.html'" ng-controller="PlayerController"></div>
-    </div> <!-- End container -->
-    <script>
+<!-- UPDATED: DIV CONTAINER has been deleted, not needed -->
+<body id="container" class="stretchable flexibleColumn minsizable">
+	<!-- Main -->
+	<header class="sizable flexibleColumn minsizable" ng-view></header>
+	<!-- Player -->
+	<footer id=player class="flexibleRow flexCentered" ng-include src="'player/player.html'" ng-controller="PlayerController"></footer>
+	<script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
                 (i[r].q = i[r].q || []).push(arguments)

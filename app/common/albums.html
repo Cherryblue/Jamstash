@@ -1,0 +1,24 @@
+<!-- Album -->
+<div class=album ng-repeat="o in album" ng-switch on="o.type">
+	<article class="flexibleRow flexCentered" ng-switch-when="byfolder" id="{{o.id}}" ng-class="{'selected': selectedAlbum == o.id}" ng-click="getDirectory('display', o.id, o.name, 'forward')" parentid="{{o.parentid}}">
+		<div class="flexibleRow actions">
+			<a class="icon icon-btn jam-Add add" href="" title="Add To Play Queue" ng-click="getDirectory('add', o.id, o.name, 'forward')" stop-event="click"></a>
+			<a class="icon icon-btn jam-Play play" href="" title="Play" ng-click="getDirectory('play', o.id, o.name, 'forward')" stop-event="click"></a>
+			<a class="icon icon-btn jam-Download download" href="" ng-click="download(o.id)" title="Download" stop-event="click"></a>
+			<a href="" title="Star" class="icon icon-btn jam-Star ng-class="{'favorite': o.starred, 'rate': !o.starred}" ng-click="toggleStar(o)" stop-event="click"></a>
+			<a class="icon icon-btn jam-Info info" href="" title="{{'Created: ' + o.date}}"></a>
+		</div>
+		<div class="art"><img ng-src="{{o.coverartthumb}}" src="images/albumdefault_160.jpg"></div>
+		<div class="info">
+			<div class="title" title="{{o.name}}" ng-bind-html="o.name"></div>
+			<div class="artist" title="{{o.artist}}"><a href="" id="{{o.parentid}}" ng-click="getDirectory('display', o.parentid, o.artist, 'forward')" stop-event="click" ng-bind-html="o.artist"></a></div>
+		</div>
+	</article>
+	<article ng-switch-when="bytag" id="{{o.id}}" ng-class="{'selected': selectedAlbum == o.id, 'albumgrid': settings.DefaultLibraryLayout.id == 'grid'}" ng-click="getAlbumByTag(o.id)">
+		<div class="art"><img ng-src="{{o.coverartthumb}}" src="images/albumdefault_160.jpg"></div>
+		<div class="info">
+			<div class="title" title="{{o.name}}" ng-bind-html="o.name"></div>
+			<div class="artist" title="{{o.artist}}"><a href="" ng-click="getArtistByTag(o.artistId)" stop-event="click" ng-bind-html="o.artist"></a></div>
+		</div>
+	</article>
+</div>
