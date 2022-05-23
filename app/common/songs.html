@@ -11,7 +11,7 @@
     <td class="artist" ng-bind-html="o.artist"></td>
     <td class="album flexibleRow flexCentered" ng-show="o.album && itemType !== 'archive'">
         <a class="flexibleRow flexCentered" ng-href="#/library/0/{{o.albumId}}" title="{{o.album}}" stop-event="click">
-			<img ng-src="{{o.coverartthumb}}">
+			<img check-image ng-src="{{o.coverartthumb}}">
 			<span class="albumblock" ng-bind-html="o.album"></span>
         </a>
     </td>
