@@ -53,12 +53,7 @@ span.alert
     font-size: 12px;
     margin: 0 0 0 10px;
 }
-span.apiversion
-{
-    color: #000000;
-    font-weight: bold;
-    font-size: 14px;
-}
+
 body{ min-width: 275px; }
 body .adaptivelyShown{ display: none; }
 .alignleft { text-align: left; }
@@ -750,6 +745,7 @@ table.songlist{
     overflow: hidden;
     margin: 1px 8px 0 1px;
     padding: 2px;
+	cursor: pointer;
 }
 /** TODO : Where is this used ? */
 .vertshade {
@@ -814,10 +810,39 @@ span.code{
 	background: var(--bg-intermediate-color);
 }
 #settings .subsection{
+	padding: 0;
 	min-width: 215px;
+	overflow-x: hidden;
+	gap: 10px;
 }
 #settings .subsection.changelog{
 	min-width: 500px;
+}
+
+#settings .subsection fieldset{
+	gap: 5px;
+	margin: 0 5px;
+}
+
+#settings .subsection fieldset input[type=checkbox]{
+	display: none;
+}
+
+#settings .subsection fieldset input[type=checkbox]+label.button > i{
+	opacity: 0;
+}
+
+#settings .subsection fieldset input[type=checkbox]:checked+label.button i{
+	opacity: 1;
+}
+
+#settings .submit{
+	margin: 0 5px;
+	gap: 5px;
+}
+
+#settings select{
+	margin: 0;
 }
 
 
@@ -882,7 +907,6 @@ select.folders{
 label{
     font-size: 12px;
     font-weight: bold;
-    margin: 0 5px;
 }
 fieldset{
     border: 1px solid #EEE;
@@ -988,7 +1012,7 @@ ul.mainlist li.selected{
     background-color: var(--selection);
 }
 
-ul.tablist li.active{
+ul.tablist li.active, #settings .subsection fieldset input[type=checkbox]:checked+label.button{
 	background: var(--bg-alt-color);
 }
 ul.tablist li a{
@@ -1170,7 +1194,7 @@ table.songlist tr.song.selected .checker,
 }
 
 /* Button Style */
-a.button {
+a.button, label.button {
     color: #6e6e6e;
     font: bold 12px Helvetica, Arial, sans-serif;
     padding: 6px 10px 6px 10px;
@@ -1180,11 +1204,11 @@ a.button {
     border-radius: 2px;
     cursor: pointer;
 }
-a.button:hover {
+a.button:hover, label.button:hover {
 	background-color: var(--bg-intermediate-color);
 }
 
-a.button .icon{
+a.button .icon, label.button .icon{
 	font-size: 15px;
 	padding-top: 1px;
 	padding-bottom: 1px;

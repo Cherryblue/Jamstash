@@ -89,7 +89,8 @@ angular.module('jamstash.subsonic.controller', [
         selectAll              : selectAll,
         selectNone             : SelectedSongs.reset,
         toggleSelection        : SelectedSongs.toggle,
-		sortAlbums				: sortAlbums
+		sortAlbums				: sortAlbums,
+		getAlbums				: getAlbums
     });
 
     function selectAll() {
@@ -186,7 +187,7 @@ angular.module('jamstash.subsonic.controller', [
         $scope.saveDefaultSection('index');
 		let btn = $('#indexTabBtn')[0];
 		unselectChildren(btn?.parentElement);
-		btn?.classList.add('active');
+		btn?.classList.add('active');		
     };
     $scope.showPlaylist = false;
     $scope.togglePlaylist = function () {
@@ -216,12 +217,27 @@ angular.module('jamstash.subsonic.controller', [
         switch (section) {
             case 'index':
                 $rootScope.showIndex = true;
+				
+				// If no selected artist/album, show random albums
+				if(null == $routeParams.artistId && null == $routeParams.albumId && null == $scope.album)
+					$scope.getAlbumListBy('random');
                 break;
             case 'playlist':
                 $scope.showPlaylist = true;
+				
+				// If no selected playlist, show random playlist
+				if(null == $scope.song || $scope.song.length == 0)
+					$scope.getRandomSongs('display');
                 break;
             case 'podcast':
                 $scope.showPodcast = true;
+				
+				// If no selected podcast, show first one
+				if(null == $scope.song || $scope.song.length == 0)
+					$scope.getPodcasts().then(() => {
+						if($scope.podcasts.length > 0)
+							$scope.getPodcast('display', $scope.podcasts[0].id);
+					});
                 break;
             default:
 				return;
@@ -701,6 +717,7 @@ angular.module('jamstash.subsonic.controller', [
             // Otherwise, a notification will be displayed at every page reload.
             $scope.podcasts = [];
         });
+		return promise;
     };
 
     $scope.getPodcast = function (action, id) {
@@ -779,5 +796,10 @@ angular.module('jamstash.subsonic.controller', [
     } else if ($routeParams.artistId) {
         $scope.getAlbums($routeParams.artistId);
     }
+	
+	function getAlbums(id){
+		console.log(id);
+	};
+	
     /* End Startup */
 }]);

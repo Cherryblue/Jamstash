@@ -29,3 +29,7 @@ input, select{
 #nav .icon-tab.active, .selected .icon, .selected .icon-btn, #player .jam-Cloud.selected, #player .jam-Loop, #player .jam-Loop-one{
 	color: white;
 }
+
+#settings a.button, #settings label.button{
+	color: white;
+}

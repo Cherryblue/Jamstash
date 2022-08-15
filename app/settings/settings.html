@@ -4,46 +4,43 @@
 </section>
 <section class="flexibleColumn minsizable growable mainContent scrollable">
 	<div id="settings" class="flexibleRow growable">
-		<div class="subsection">
-			<h3 class="title">Login</h3>
-			<label for="Username">Username <span class="red">*</span></label><br />
-			<input type="text" id="Username" name="Username" class="large" ng-model="settings.Username" /><br />
-			<label for="Password">Password <span class="red">*</span></label><br />
-			<input type="password" id="Password" name="Password" class="large" ng-model="settings.Password" /><br />
-			<label for="Server">Server <span class="red">*</span> (<a href="" title="Connect to Demo Subsonic Server" ng-click="setupDemo()">Demo</a>)</label><br />
-			<input type="text" id="Server" name="Server" class="xlarge" title="Subsonic Server URL Ex: http://host:port" ng-model="settings.Server" /><br />
-			<br />
-			<h3 class="title">Options</h3>
-			<label for="SubsonicVersion">Subsonic API: <span class="apiversion" id="SubsonicVersion">{{settings.ApiVersion}}</span></label><br />
-			<label for="SMStats">Audio State: <span id="SMStats"></span></label><br />
-			<label for="Theme">Theme</label><br />
-			<select id="Theme" name="Theme" class="large" ng-model="settings.Theme" ng-options="o for o in Themes"></select><br />
-			<label for="AutoAlbumSize">Auto Album Size</label><br />
-			<input type="text" id="AutoAlbumSize" name="AutoAlbumSize" class="large" title="Number of Albums to Get on the Music Library tab" ng-model="settings.AutoAlbumSize" /><br />
-			<label for="AutoPlaylistSize">Auto Playlist Size</label><br />
-			<input type="text" id="AutoPlaylistSize" name="AutoPlaylistSize" class="large" title="Number of Songs to Get on the Playlist tab" ng-model="settings.AutoPlaylistSize" /><br />
-			<label for="ApplicationName">Application Name</label><br />
-			<input type="text" id="ApplicationName" name="ApplicationName" class="large" title="Custom Player Name" ng-model="settings.ApplicationName" /><br />
-			<div class="submit">
-				<a href="" class="button" ng-click="reset()" title="Reset Settings (Except Server)">Reset</a>
-				<a href="" class="button" ng-click="save()" title="Save Settings">Save</a>
+		<div class="subsection flexibleColumn">
+			<fieldset class=flexibleColumn>
+				<legend class="title">Login</legend>
+				<input type="text" id="Username" name="Username" placeholder=Username ng-model="settings.Username" />
+				<input type="password" id="Password" name="Password" placeholder=Password ng-model="settings.Password" />
+				<input type="text" id="Server" name="Server" placeholder=Server title="Subsonic Server URL Ex: http://host:port" ng-model="settings.Server" />
+			</fieldset>
+			<fieldset class=flexibleColumn>
+				<legend class="title">Options</legend>
+				<label for="Theme">Theme</label><br />
+				<select id="Theme" name="Theme" ng-model="settings.Theme" ng-options="o for o in Themes"></select>
+				<label for="AutoAlbumSize">Auto Album Size</label>
+				<input type="text" id="AutoAlbumSize" name="AutoAlbumSize" title="Number of Albums to Get on the Music Library tab" ng-model="settings.AutoAlbumSize" />
+				<label for="AutoPlaylistSize">Auto Playlist Size</label>
+				<input type="text" id="AutoPlaylistSize" name="AutoPlaylistSize" title="Number of Songs to Get on the Playlist tab" ng-model="settings.AutoPlaylistSize" />
+				<label for="ApplicationName">Application Name</label>
+				<input type="text" id="ApplicationName" name="ApplicationName" title="Custom Player Name" ng-model="settings.ApplicationName" />
+			</fieldset>
+			<fieldset class=flexibleColumn>
+				<legend class="title">Information</legend>
+				<label for="SubsonicVersion">Subsonic API: <strong id="SubsonicVersion">{{settings.ApiVersion}}</strong></label>
+				<label for="SMStats">Audio State: <span id="SMStats"></span></label>
+			</fieldset>
+			<div class="submit flexibleRow">
+				<a href="" class="growable button" ng-click="reset()" title="Reset Settings (Except Server)">Reset</a>
+				<a href="" class="growable button" ng-click="save()" title="Save Settings">Save</a>
 			</div>
 		</div>
-		<div class="subsection">
+		<div class="subsection flexibleColumn">
 			<fieldset class=flexibleColumn>
 				<legend class="aligncenter">General</legend>
-				<label for="AutoPlay" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="AutoPlay" name="AutoPlay" value="1" title="When the Queue has ended, load random songs" ng-model="settings.AutoPlay" />
-					<span>Auto Play</span>
-				</label>
-				<label for="HideAZ" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="HideAZ" name="HideAZ" value="1" title="Hide A-Z Artist Picker (Tablet/Touch friendly feature)" ng-model="settings.HideAZ" />
-					<span>Hide A-Z</span>
-				</label>
-				<label for="ScrollTitle" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="ScrollTitle" name="ScrollTitle" value="1" title="Scroll the Title Once" ng-model="settings.ScrollTitle" />
-					<span>Scroll Title</span>
-				</label>
+				<input type="checkbox" id="AutoPlay" name="AutoPlay" value="1" title="When the Queue has ended, load random songs" ng-model="settings.AutoPlay" />
+				<label for="AutoPlay" class="button flexibleRow flexCentered stretchable">Auto Play<i class="icon jam-Check"></i></label>
+				<input type="checkbox" id="HideAZ" name="HideAZ" value="1" title="Hide A-Z Artist Picker (Tablet/Touch friendly feature)" ng-model="settings.HideAZ" />
+				<label for="HideAZ" class="button flexibleRow flexCentered stretchable">Hide A-Z<i class="icon jam-Check"></i></label>
+				<input type="checkbox" id="ScrollTitle" name="ScrollTitle" value="1" title="Scroll the Title Once" ng-model="settings.ScrollTitle" />
+				<label for="ScrollTitle" class="button flexibleRow flexCentered stretchable">Scroll Title<i class="icon jam-Check"></i></label>
 				<label for="DefaultLibraryLayout"  class="flexibleRow flexCentered growable">
 					<span class=growable>Default Library Layout</span>
 					<select id="DefaultLibraryLayout" name="DefaultLibraryLayout" class="" ng-model="settings.DefaultLibraryLayout.id" ng-options="o.id as o.name for o in Layouts" title="Library Layout"></select>
@@ -53,44 +50,31 @@
 					<select id="DefaultSearchType" name="DefaultSearchType" class="" ng-model="settings.DefaultSearchType" ng-options="o.id as o.name for o in SearchTypes" title="Subsonic Album Layout"></select>
 				</label>
 			</fieldset>
-			<fieldset id="HTML5" class=flexibleColumn>
-				<legend class="aligncenter">HTML5</legend>
-				<span>Notifications</span>
-				<label for="NotificationSong" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="NotificationSong" name="NotificationSong" value="1" title="Enable Notifications When Tracks Change" ng-model="settings.NotificationSong" />
-					<span class=growable>Song Change</span>
-				</label>
-				<label for="NotificationNowPlaying" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="NotificationNowPlaying" name="NotificationNowPlaying" value="1" title="Enable Notifications When Other Users Play Songs" ng-model="settings.NotificationNowPlaying" />
-					<span class=growable>Now Playing</span>
-				</label>
-				<span>Local Storage</span>
-				<label for="SaveTrackPosition" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="SaveTrackPosition" name="SaveTrackPosition" value="1" title="Saves Play Queue & Track Position Periodically (Uses HTML5: localStorage)" ng-model="settings.SaveTrackPosition" />
-					<span class=growable>Save Progress</span>
-				</label>
+			<fieldset id="HTML5N" class=flexibleColumn>
+				<legend>HTML5 Notifications</legend>
+				<input type="checkbox" id="NotificationSong" name="NotificationSong" value="1" title="Enable Notifications When Tracks Change" ng-model="settings.NotificationSong" />
+				<label for="NotificationSong" class="button flexibleRow flexCentered stretchable">Song Change<i class="icon jam-Check"></i></label>
+				<input type="checkbox" id="NotificationNowPlaying" name="NotificationNowPlaying" value="1" title="Enable Notifications When Other Users Play Songs" ng-model="settings.NotificationNowPlaying" />
+				<label for="NotificationNowPlaying" class="button flexibleRow flexCentered stretchable">Now Playing<i class="icon jam-Check"></i></label>
+			</fieldset>
+			<fieldset id="HTML5L" class=flexibleColumn>
+				<legend>HTML5 Local Storage</legend>
+				<input type="checkbox" id="SaveTrackPosition" name="SaveTrackPosition" value="1" title="Saves Play Queue & Track Position Periodically (Uses HTML5: localStorage)" ng-model="settings.SaveTrackPosition" />
+				<label for="SaveTrackPosition" class="button flexibleRow flexCentered stretchable">Save Progress<i class="icon jam-Check"></i></label>
 			</fieldset>
 			<fieldset class=flexibleColumn>
 				<legend class="aligncenter">Jukebox</legend>
-				<label for="Jukebox">
-					<input type="checkbox" id="Jukebox" name="Jukebox" value="1" title="Enable Jukebox Mode [Beta]" ng-model="settings.Jukebox" />
-					<span>Enable</span>
-				</label>
+				<input type="checkbox" id="Jukebox" name="Jukebox" value="1" title="Enable Jukebox Mode [Beta]" ng-model="settings.Jukebox" />
+				<label for="Jukebox" class="button flexibleRow flexCentered stretchable">Enable<i class="icon jam-Check"></i></label>
 			</fieldset>
-			<fieldset>
+			<fieldset class=flexibleColumn>
 				<legend class="aligncenter">Advanced</legend>
-				<label for="Debug" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="Debug" name="Debug" value="1" title="Enable Debug Mode (Events will be logged to the Javascript Console)" ng-model="settings.Debug" />
-					<span class=growable>Debug Mode</span>
-				</label>
-				<label for="EstimateLength" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="EstimateLength" name="EstimateLength" value="1" title="Ask the server to estimate the filesize of transcoded media" ng-model="settings.EstimateLength" />
-					<span class=growable>Estimate content length</span>
-				</label>
-				<label for="ForceFlash" class="flexibleRow flexCentered growable">
-					<input type="checkbox" id="ForceFlash" name="ForceFlash" value="1" title="Force Flash Plugin for Audio (Option doesn't work with Chrome App)" ng-model="settings.ForceFlash" />
-					<span class=growable>Force Flash</span>
-				</label>
+				<input type="checkbox" id="Debug" name="Debug" value="1" title="Enable Debug Mode (Events will be logged to the Javascript Console)" ng-model="settings.Debug" />
+				<label for="Debug" class="button flexibleRow flexCentered stretchable">Debug Mode<i class="icon jam-Check"></i></label>
+				<input type="checkbox" id="EstimateLength" name="EstimateLength" value="1" title="Ask the server to estimate the filesize of transcoded media" ng-model="settings.EstimateLength" />
+				<label for="EstimateLength" class="button flexibleRow flexCentered stretchable">Estimate content length<i class="icon jam-Check"></i></label>
+				<input type="checkbox" id="ForceFlash" name="ForceFlash" value="1" title="Force Flash Plugin for Audio (Option doesn't work with Chrome App)" ng-model="settings.ForceFlash" />
+				<label for="ForceFlash" class="button flexibleRow flexCentered stretchable">Force Flash<i class="icon jam-Check"></i></label>
 				<label for="Timeout" class="flexibleRow flexCentered growable">
 					<span class=growable>Timeout</span>
 					<select id="Timeout" name="Timeout" class="" ng-model="settings.Timeout" ng-options="o.id as o.name for o in Timeouts" title="AJAX Request Timeout (Seconds)"></select>
@@ -102,50 +86,35 @@
 			</fieldset>
 		</div>
 
-		<div class="subsection">
+		<div class="subsection flexibleColumn">
 			<h3 class="title">Tips</h3>
 			<ul class="preferences">
-			<li>Click the Notification to quickly Skip the Song</li>
-			<li>Click <i class="icon jam-Play"></i> on a song to play the rest of the album</li>
+				<li>Click the Notification to quickly Skip the Song</li>
+				<li>Click <i class="icon jam-Play"></i> on a song to play the rest of the album</li>
 			</ul>
 			<h3 class="title">Keyboard Shortcuts</h3>
 			<ul class="preferences">
-			<li><em>Esc</em> Hide Queue</li>
-			<li><em>[a-z]</em> Use to Quickly Browse to an Artist</li>
-			<li><em>Spacebar</em> Play/Pause</li>
-			<li><em>&rarr;</em> Next Track</li>
-			<li><em>&larr;</em> Previous Track</li>
-			<li><em>-/_</em> Volume Down <em>=/+</em> Volume Up</li>
-			<li><em>Media Keys</em> via <a href="https://chrome.google.com/webstore/detail/key-socket-media-keys/fphfgdknbpakeedbaenojjdcdoajihik" target="_blank">Key Socket Media Keys</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/media-keys" target="_blank">Media Keys</a> <a href="https://github.com/carlin-q-scott/browser-media-keys/pull/21" target="_blank">(see also)</a></li>
+				<li><em>Esc</em> Hide Queue</li>
+				<li><em>[a-z]</em> Use to Quickly Browse to an Artist</li>
+				<li><em>Spacebar</em> Play/Pause</li>
+				<li><em>&rarr;</em> Next Track</li>
+				<li><em>&larr;</em> Previous Track</li>
+				<li><em>-/_</em> Volume Down <em>=/+</em> Volume Up</li>
+				<li><em>Media Keys</em> via <a href="https://chrome.google.com/webstore/detail/key-socket-media-keys/fphfgdknbpakeedbaenojjdcdoajihik" target="_blank">Key Socket Media Keys</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/media-keys" target="_blank">Media Keys</a> <a href="https://github.com/carlin-q-scott/browser-media-keys/pull/21" target="_blank">(see also)</a></li>
 			</ul>
-			<div id="donate" class="subsection">
-				<h3 class="title">Buy me a <span class="beer">beer</span>! I'd like that :)</h3>
-				<form id="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="VMTENRSJWQ234">
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-				<small>*This is a donation to <a href="https://twitter.com/JamstashApp" target="_blank">tsquillario</a>, the developer of <a href="https://github.com/tsquillario/Jamstash" target="_blank">Jamstash</a>.
-				<br />Not related to a Subsonic License!</small>
-			</div>
-		</div>
-		<div class="subsection">
 			<h3 class="title">Links</h3>
 			<ul class="preferences">
-			<li>Report Issues - <a href="https://github.com/tsquillario/Jamstash" target="_blank">https://github.com/tsquillario/Jamstash</a></li>
-			<li>Jamstash Chrome App - <a href="https://chrome.google.com/webstore/detail/jccdpflnecheidefpofmlblgebobbloc" target="_blank">Chrome Web Store</a></li>
-			<li>Beta Site - <a href="http://beta.jamstash.com" target="_blank">http://beta.jamstash.com</a></li>
-			<li><a href="https://twitter.com/JamstashApp" target="_blank">Follow @JamstashApp</a>
+				<li>Report Issues - <a href="https://github.com/tsquillario/Jamstash" target="_blank">https://github.com/tsquillario/Jamstash</a></li>
+				<li>Jamstash Chrome App - <a href="https://chrome.google.com/webstore/detail/jccdpflnecheidefpofmlblgebobbloc" target="_blank">Chrome Web Store</a></li>
 			</ul>
 			<h3 class="title">Thanks</h3>
 			<ul class="preferences">
-			<li>Icons Design - <a href="https://github.com/Cherryblue">Cherryblue</a></li>
-			<li>Icons Font assembler - <a href="https://nucleoapp.com/" target="_blank">Nucleo</a></li>
-			<li>Audio Library - <a href="https://jplayer.org" target="_blank">Jplayer</a></li>
+				<li>Icons Design - <a href="https://github.com/Cherryblue">Cherryblue</a></li>
+				<li>Icons Font assembler - <a href="https://nucleoapp.com/" target="_blank">Nucleo</a></li>
+				<li>Audio Library - <a href="https://jplayer.org" target="_blank">Jplayer</a></li>
 			</ul>
 		</div>
-		<div class="subsection changelog">
+		<div class="subsection flexibleColumn changelog">
 			<h3 class="title">Change Log</h3>
 			<ul id="ChangeLog" class="preferences">
 				<li class="log" ng-repeat="o in changeLog"><span class="version">{{o.date + ' - ' + o.version}}</span>
