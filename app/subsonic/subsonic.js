@@ -215,13 +215,6 @@ angular.module('jamstash.subsonic.controller', [
     $scope.openDefaultSection = function () {
         var section = utils.getValue('DefaultSection');
         switch (section) {
-            case 'index':
-                $rootScope.showIndex = true;
-				
-				// If no selected artist/album, show random albums
-				if(null == $routeParams.artistId && null == $routeParams.albumId && null == $scope.album)
-					$scope.getAlbumListBy('random');
-                break;
             case 'playlist':
                 $scope.showPlaylist = true;
 				
@@ -229,6 +222,7 @@ angular.module('jamstash.subsonic.controller', [
 				if(null == $scope.song || $scope.song.length == 0)
 					$scope.getRandomSongs('display');
                 break;
+				
             case 'podcast':
                 $scope.showPodcast = true;
 				
@@ -239,11 +233,18 @@ angular.module('jamstash.subsonic.controller', [
 							$scope.getPodcast('display', $scope.podcasts[0].id);
 					});
                 break;
+				
+            case 'index':
             default:
-				return;
+				$rootScope.showIndex = true;
+				
+				// If no selected artist/album, show random albums
+				if(null == $routeParams.artistId && null == $routeParams.albumId && null == $scope.album)
+					$scope.getAlbumListBy('random');
+                break;
         }
 		
-		let btn = $('#'+section+'TabBtn')[0];
+		let btn = $('#'+(section || 'index')+'TabBtn')[0];
 		unselectChildren(btn.parentElement);
 		btn.classList.add('active');
     };

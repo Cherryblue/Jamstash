@@ -456,6 +456,7 @@ ul.simplelist li.index
 }
 .albumlist .album .info .title,
 .albumlist .album .info .artist a{
+	display: block;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -483,6 +484,7 @@ ul.simplelist li.index
 }
 .albumgrid .album article{
 	flex-direction: column;
+	overflow: hidden;
 }
 .albumgrid .album .art, .albumgrid .album .art img{
 	width: 160px;

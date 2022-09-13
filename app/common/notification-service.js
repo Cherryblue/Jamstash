@@ -10,7 +10,6 @@ angular.module('jamstash.notifications', ['jamstash.player.service', 'jamstash.u
     'use strict';
 
     this.updateMessage = function (msg, autohide) {
-		console.log($rootScope.Messages);
         if (msg !== '') {
             var id = $rootScope.Messages.push(msg) - 1;
             $('#messages').fadeIn();

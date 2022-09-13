@@ -154,6 +154,7 @@ angular.module('JamStash')
 
     $(document).on("click", ".message", function(){
        $(this).remove();
+	   $rootScope.Messages = $rootScope.Messages.filter(m => m != $(this)[0]?.innerText);
     });
 
     // Global Functions

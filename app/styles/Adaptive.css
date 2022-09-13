@@ -31,6 +31,14 @@
 }
 
 @media (min-width : 825px) and (max-width : 1285px), (min-width : 406px) and (max-width : 657px) {
+	.albumgrid .album{
+		padding: 5px;
+	}
+	
+	.albumgrid .album .art, .albumgrid .album{
+		width: 120px;
+	}
+	
 	.albumgrid .album .art, .albumgrid .album .art img {
 		width: 100px;
 		height: 100px;
@@ -231,7 +239,7 @@
 	}
 	.albumgrid .album .actions{
 		flex-wrap: wrap;
-		width: 40px;
+		width: 50px;
 		flex-shrink: 0;
 	}
 	.albumgrid .album .actions .download{
@@ -245,6 +253,14 @@
 
 	.breadcrumb:first-child{
 		display: none;
+	}
+	
+	.subTabLevel:nth-child(2){
+		min-height: auto;
+	}
+	.subTabLevel:nth-child(2) > div{
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
 	
 	.songlist tr.song td.actions{
