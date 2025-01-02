@@ -1,6 +1,8 @@
-**>> JAMSTASH <<**
+# PROJECT DISCONTINUED
+In november 2024 I finally decided to start from scratch using some more modern technologies (Jamstash was AngularJS-based).<br>
+Here comes **[Noiser](https://github.com/Cherryblue/Noiser)**. *See you around.*
 
-# Original Project
+# JAMSTASH - Original Project
 This here is a fork of the original project [which you can go see here](https://github.com/tsquillario/Jamstash).
 This is a great project, and by no means do I want to remove any credit from the original(s) creator(s).
 
